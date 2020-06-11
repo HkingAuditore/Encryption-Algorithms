@@ -1,20 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script type="text/javascript" src="Plugin/JQuery.js"></script>
+    <title>加密解密算法</title>
+
+    <!-- 插件 -->I
+    <script type="text/javascript" src="PlugIn/JQuery.js"></script>
+
+    <script type="text/javascript" src="PlugIn/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="PlugIn/bootstrap/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="PlugIn/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="PlugIn/bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="PlugIn/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="PlugIn/bootstrap/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="PlugIn/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="PlugIn/bootstrap/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="PlugIn/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="PlugIn/bootstrap/css/bootstrap.min.css">
+    <!-- 插件 -->
+
+
+
     <script type="text/javascript" src="Scripts/VigenereCipher.js"></script>
     <script type="text/javascript" src="Scripts/MonoalphabeticSubstitutionCipher.js"></script>
     <script type="text/javascript" src="Scripts/TransferredCipher.js"></script>
 
 </head>
+
 <body>
-    Hello World!
-    <script type="text/javascript">
-        alert(TransferredKeyEncode("EZIOAUDITORE","Hking"),"Hking");
-        alert(TransferredKeyDecode(TransferredKeyEncode("EZIOAUDITORE","Hking"),"Hking"));
-    </script>
+    <div class="container-fluid" style="background-color: rgba(255, 255, 255, 0);
+                                        padding: 2%;
+                                        width:80%;
+                                        margin-top: 2%;
+                                        border-radius: 20px;
+                                        border: 5px solid rgb(36, 157, 255);
+                                        box-shadow: 0px 5px 20px #4a5a7454;">
+        <div class="row">
+            <div class=" col-12" style="text-align: center;color: rgb(35, 72, 116);font-size:larger;">
+                加密解密算法
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 4%;">
+            <div class=" col-12" style="text-align: center;color: rgb(29, 29, 29);font-size:larger;">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-primary active">
+                        <input type="radio" name="options" id="Vigenere" checked> 维吉尼亚密码
+                    </label>
+                    <label class="btn btn-outline-primary">
+                        <input type="radio" name="options" id="Mono"> 单表置换密码
+                    </label>
+                    <label class="btn btn-outline-primary">
+                        <input type="radio" name="options" id="TransferredCount"> 转换加密法-数字密钥
+                    </label>
+                    <label class="btn btn-outline-primary">
+                        <input type="radio" name="options" id="TransferredKey"> 转换加密法-字符串密钥
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" style="margin-top: 4%; padding-left: 5%; padding-right:5%;">
+            <div class=" col-12">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">密钥</span>
+                    </div>
+                    <input id="Key" type="text" class="form-control" placeholder="要求全英文字符串" aria-label="密钥要求" aria-describedby="basic-addon1" data-toggle="tooltip" data-placement="top" title="要求全英文字符串">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">原文</span>
+                    </div>
+                    <textarea id="Source" class="form-control" aria-label="原文"></textarea>
+                </div>
+
+                <div class=" input-group mb-3 ">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text ">密文</span>
+                    </div>
+                    <textarea id="Cipher" class="form-control " aria-label="密文"></textarea>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+        <div class="row " style="margin-top: 4%; text-align: center; ">
+
+
+            <div class=" col-12 ">
+                <div class="btn-group " role="group " aria-label="Basic example ">
+                    <button id="Encode" class="btn btn-primary " type="button ">加密</button>
+                    <button id="Decode" class="btn btn-primary " type="button ">解码</button>
+                    <button id="Reset" class="btn btn-danger " type="reset ">重置</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </body>
+
 </html>
+
+<script>
+    var selectedMode;
+
+
+    // 点选模式
+    $('#Vigenere').click(function() {
+        $('#Key').attr('placeholder', "要求全英文字符串");
+        $('#Key').attr('title', "要求全英文字符串");
+        $('#Source').val(" ");
+        $('#Key').val(" ");
+        $('#Cipher').val(" ");
+        selectedMode = 0;
+    });
+
+    $('#Mono').click(function() {
+        $('#Key').attr('placeholder', "要求全英文字符串，不要出现重复字符");
+        $('#Key').attr('title', "要求全英文字符串，不要出现重复字符");
+        $('#Source').val(" ");
+        $('#Key').val(" ");
+        $('#Cipher').val(" ");
+        selectedMode = 1;
+    });
+
+    $('#TransferredCount').click(function() {
+        $('#Key').attr('placeholder', "要求大于1的整数");
+        $('#Key').attr('title', "要求大于1的整数");
+        $('#Source').val(" ");
+        $('#Key').val(" ");
+        $('#Cipher').val(" ");
+        selectedMode = 2;
+    });
+
+    $('#TransferredKey').click(function() {
+        $('#Key').attr('placeholder', "要求全英文字符串，最好不要出现重复字符 ");
+        $('#Key').attr('title', "要求全英文字符串，最好不要出现重复字符 ");
+        $('#Source').val(" ");
+        $('#Key').val(" ");
+        $('#Cipher').val(" ");
+        selectedMode = 3;
+    });
+
+    $('#Encode').click(function() {
+        switch (selectedMode) {
+            case 0:
+                $('#Cipher').val(VidenereEncode($('#Source').val(), $('#Key').val()));
+                break;
+            case 1:
+                $('#Cipher').val(MonoEncode($('#Source').val(), $('#Key').val()));
+                break;
+            case 2:
+                $('#Cipher').val(TransferredCountEncode($('#Source').val(), $('#Key').val()));
+                break;
+            case 3:
+                $('#Cipher').val(TransferredKeyEncode($('#Source').val(), $('#Key').val()));
+                break;
+
+            default:
+                break;
+        }
+    });
+
+    $('#Decode').click(function() {
+        switch (selectedMode) {
+            case 0:
+                $('#Source').val(VigenereDecode($('#Cipher').val(), $('#Key').val()));
+                break;
+            case 1:
+                $('#Source').val(MonoDecode($('#Cipher').val(), $('#Key').val()));
+                break;
+            case 2:
+                $('#Source').val(TransferredCountDecode($('#Cipher').val(), $('#Key').val()));
+                break;
+            case 3:
+                $('#Source').val(TransferredKeyEDecode($('#Cipher').val(), $('#Key').val()));
+                break;
+
+            default:
+                break;
+        }
+    });
+
+    $('#Recode').click(function() {
+        $('#Source').val(" ");
+        $('#Key').val(" ");
+        $('#Cipher').val(" ");
+    });
+</script>
