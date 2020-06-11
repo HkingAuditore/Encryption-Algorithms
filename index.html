@@ -112,50 +112,50 @@
 </html>
 
 <script>
-    var selectedMode;
+    var selectedMode = 0;
 
 
     // 点选模式
     $('#Vigenere').click(function() {
         $('#Key').attr('placeholder', "要求全英文字符串");
         $('#Key').attr('title', "要求全英文字符串");
-        $('#Source').val(" ");
-        $('#Key').val(" ");
-        $('#Cipher').val(" ");
+        $('#Source').val("");
+        $('#Key').val("");
+        $('#Cipher').val("");
         selectedMode = 0;
     });
 
     $('#Mono').click(function() {
         $('#Key').attr('placeholder', "要求全英文字符串，不要出现重复字符");
         $('#Key').attr('title', "要求全英文字符串，不要出现重复字符");
-        $('#Source').val(" ");
-        $('#Key').val(" ");
-        $('#Cipher').val(" ");
+        $('#Source').val("");
+        $('#Key').val("");
+        $('#Cipher').val("");
         selectedMode = 1;
     });
 
     $('#TransferredCount').click(function() {
         $('#Key').attr('placeholder', "要求大于1的整数");
         $('#Key').attr('title', "要求大于1的整数");
-        $('#Source').val(" ");
-        $('#Key').val(" ");
-        $('#Cipher').val(" ");
+        $('#Source').val("");
+        $('#Key').val("");
+        $('#Cipher').val("");
         selectedMode = 2;
     });
 
     $('#TransferredKey').click(function() {
         $('#Key').attr('placeholder', "要求全英文字符串，最好不要出现重复字符 ");
         $('#Key').attr('title', "要求全英文字符串，最好不要出现重复字符 ");
-        $('#Source').val(" ");
-        $('#Key').val(" ");
-        $('#Cipher').val(" ");
+        $('#Source').val("");
+        $('#Key').val("");
+        $('#Cipher').val("");
         selectedMode = 3;
     });
 
     $('#Encode').click(function() {
         switch (selectedMode) {
             case 0:
-                $('#Cipher').val(VidenereEncode($('#Source').val(), $('#Key').val()));
+                $('#Cipher').val(VigenereEncode($('#Source').val(), $('#Key').val()));
                 break;
             case 1:
                 $('#Cipher').val(MonoEncode($('#Source').val(), $('#Key').val()));
@@ -184,7 +184,7 @@
                 $('#Source').val(TransferredCountDecode($('#Cipher').val(), $('#Key').val()));
                 break;
             case 3:
-                $('#Source').val(TransferredKeyEDecode($('#Cipher').val(), $('#Key').val()));
+                $('#Source').val(TransferredKeyDecode($('#Cipher').val(), $('#Key').val()));
                 break;
 
             default:
@@ -193,8 +193,8 @@
     });
 
     $('#Reset').click(function() {
-        $('#Source').val(" ");
-        $('#Key').val(" ");
-        $('#Cipher').val(" ");
+        $('#Source').val("");
+        $('#Key').val("");
+        $('#Cipher').val("");
     });
 </script>

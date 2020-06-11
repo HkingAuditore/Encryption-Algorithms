@@ -2,7 +2,7 @@
 
 // 生成密码本
 function generateKeyArray(key) {
-    var keyArray = new String(key).split("");
+    var keyArray = new String(key).toUpperCase().split("");
     for (let i = 'A'.charCodeAt(); i <= 'Z'.charCodeAt(); i++) {
         if (jQuery.inArray(String.fromCharCode(i), keyArray) == -1) {
             keyArray.push(String.fromCharCode(i));
@@ -47,9 +47,9 @@ function MonoDecode(source, key) {
     // 遍历字符
     sourceArray.forEach((value, index, array) => {
         // 生成解密串
-        result = jQuery.inArray(value, keyArray);
+        targetChar = jQuery.inArray(value, keyArray);
         if (result != -1)
-            result.push(String.fromCharCode(result + 'A'.charCodeAt()));
+            result.push(String.fromCharCode(targetChar + 'A'.charCodeAt()));
     })
     return result.join("");
 }
