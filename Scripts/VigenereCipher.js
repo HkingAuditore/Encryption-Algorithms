@@ -4,8 +4,8 @@
 
 // 加密
 function VidenereEncode(source, key) {
-    var sourceString = new String(source);
-    var keyString = new String(key);
+    var sourceString = new String(source).toUpperCase();
+    var keyString = new String(key).toUpperCase();
     // 字符串转数组
     var target = new Array();
     var sourceArray = sourceString.split("");
@@ -28,8 +28,8 @@ function GetEncodeTrgetChar(source, key) {
 
 // 解密
 function VidenereDecode(source, key) {
-    var sourceString = new String(source);
-    var keyString = new String(key);
+    var sourceString = new String(source).toUpperCase();
+    var keyString = new String(key).toUpperCase();
     // 字符串转数组
     var target = new Array();
     var sourceArray = sourceString.split("");

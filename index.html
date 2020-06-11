@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script type="text/javascript" src="Scripts/JQuery.js"></script>
     <script type="text/javascript" src="Scripts/VigenereCipher.js"></script>
+    <script type="text/javascript" src="Scripts/MonoalphabeticSubstitutionCipher.js"></script>
+
 </head>
 <body>
     Hello World!
     <script type="text/javascript">
-        alert(VidenereDecode(VidenereEncode("EZIOAUDITORE","EZIO"),"EZIO"));
+        alert(MonoEncode("EZIOAUDITORE","EZIO"),"EZIO");
+        alert(MonoDecode(MonoEncode("EZIOAUDITORE","EZIO"),"EZIO"));
     </script>
 </body>
 </html>
