@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="text/javascript" src="Scripts/JQuery.js"></script>
+    <script type="text/javascript" src="Plugin/JQuery.js"></script>
     <script type="text/javascript" src="Scripts/VigenereCipher.js"></script>
     <script type="text/javascript" src="Scripts/MonoalphabeticSubstitutionCipher.js"></script>
     <script type="text/javascript" src="Scripts/TransferredCipher.js"></script>
@@ -13,8 +13,8 @@
 <body>
     Hello World!
     <script type="text/javascript">
-        alert(TransferredEncode("EZIOAUDITORE",5),5);
-        alert(TransferredDecode(TransferredEncode("EZIOAUDITORE",5),5));
+        alert(TransferredKeyEncode("EZIOAUDITORE","Hking"),"Hking");
+        alert(TransferredKeyDecode(TransferredKeyEncode("EZIOAUDITORE","Hking"),"Hking"));
     </script>
 </body>
 </html>
