@@ -7,14 +7,14 @@ function VidenereEncode(source, key) {
     var sourceString = new String(source).toUpperCase();
     var keyString = new String(key).toUpperCase();
     // 字符串转数组
-    var target = new Array();
+    var result = new Array();
     var sourceArray = sourceString.split("");
     sourceArray.forEach(function (value, index, array) {
         var curValue = value.charCodeAt();
         var curKeyValue = key[index % keyString.length].charCodeAt();
-        target.push(GetEncodeTrgetChar(curValue, curKeyValue));
+        result.push(GetEncodeTrgetChar(curValue, curKeyValue));
     })
-    return target.join("");
+    return result.join("");
 }
 
 // 输入两个字符序列号，输出加密目标字符
@@ -31,20 +31,20 @@ function VidenereDecode(source, key) {
     var sourceString = new String(source).toUpperCase();
     var keyString = new String(key).toUpperCase();
     // 字符串转数组
-    var target = new Array();
+    var result = new Array();
     var sourceArray = sourceString.split("");
     sourceArray.forEach(function (value, index, array) {
         var curValue = value.charCodeAt();
         var curKeyValue = key[index % keyString.length].charCodeAt();
-        target.push(GetDecodeTrgetChar(curValue, curKeyValue));
-    }) 
-    return target.join("");
+        result.push(GetDecodeTrgetChar(curValue, curKeyValue));
+    })
+    return result.join("");
 }
 
 // 输入两个字符序列号，输出解密目标字符
 function GetDecodeTrgetChar(source, key) {
-    var partition = source < key ? 1 :0;
-    return String.fromCharCode('A'.charCodeAt() + 26 * partition + source - key);
+    var partition = source < key ? 1 : 0;
+    return ('A'.charCodeAt() + 26 * partition + source - key);
 }
 
 /////////////////////////////////////////////////////////

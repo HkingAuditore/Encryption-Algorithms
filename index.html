@@ -7,13 +7,14 @@
     <script type="text/javascript" src="Scripts/JQuery.js"></script>
     <script type="text/javascript" src="Scripts/VigenereCipher.js"></script>
     <script type="text/javascript" src="Scripts/MonoalphabeticSubstitutionCipher.js"></script>
+    <script type="text/javascript" src="Scripts/TransferredCipher.js"></script>
 
 </head>
 <body>
     Hello World!
     <script type="text/javascript">
-        alert(MonoEncode("EZIOAUDITORE","EZIO"),"EZIO");
-        alert(MonoDecode(MonoEncode("EZIOAUDITORE","EZIO"),"EZIO"));
+        alert(TransferredEncode("EZIOAUDITORE",5),5);
+        alert(TransferredDecode(TransferredEncode("EZIOAUDITORE",5),5));
     </script>
 </body>
 </html>

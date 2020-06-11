@@ -3,13 +3,14 @@
 // 生成密码本
 function generateKeyArray(key) {
     var keyArray = new String(key).split("");
-    for (let index = 'A'.charCodeAt(); index <= 'Z'.charCodeAt(); index++) {
-        if (jQuery.inArray(String.fromCharCode(index), keyArray) == -1) {
-            keyArray.push(String.fromCharCode(index));
+    for (let i = 'A'.charCodeAt(); i <= 'Z'.charCodeAt(); i++) {
+        if (jQuery.inArray(String.fromCharCode(i), keyArray) == -1) {
+            keyArray.push(String.fromCharCode(i));
         }
     }
     return keyArray;
 }
+
 
 /////////////////////////////////////////////////////////
 
@@ -18,7 +19,7 @@ function MonoEncode(source, key) {
     var sourceString = new String(source).toUpperCase();
 
     // 字符串转数组
-    var target = new Array();
+    var result = new Array();
     var sourceArray = sourceString.split("");
 
     // 生成密码本
@@ -27,22 +28,17 @@ function MonoEncode(source, key) {
     // 遍历字符
     sourceArray.forEach((value, index, array) => {
         // 生成密码串
-        target.push(keyArray[value.charCodeAt() - 'A'.charCodeAt()]);
+        result.push(keyArray[value.charCodeAt() - 'A'.charCodeAt()]);
     })
-    return target.join("");
+    return result.join("");
 }
-
-
-
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 
 // 解密
 function MonoDecode(source, key) {
     var sourceString = new String(source).toUpperCase();
 
     // 字符串转数组
-    var target = new Array();
+    var result = new Array();
     var sourceArray = sourceString.split("");
 
     // 生成密码本
@@ -53,10 +49,9 @@ function MonoDecode(source, key) {
         // 生成解密串
         result = jQuery.inArray(value, keyArray);
         if (result != -1)
-            target.push(String.fromCharCode(result + 'A'.charCodeAt()));
+            result.push(String.fromCharCode(result + 'A'.charCodeAt()));
     })
-    return target.join("");
+    return result.join("");
 }
-
 
 /////////////////////////////////////////////////////////
