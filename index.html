@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>加密解密算法</title>
 
-    <!-- 插件 -->I
+    <!-- 插件 -->
     <script type="text/javascript" src="PlugIn/JQuery.js"></script>
-
-    <script type="text/javascript" src="PlugIn/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="PlugIn/Popper.js"></script>
     <script type="text/javascript" src="PlugIn/bootstrap/js/bootstrap.bundle.js"></script>
     <script type="text/javascript" src="PlugIn/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="PlugIn/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="PlugIn/bootstrap/js/bootstrap.min.js"></script>
+
 
     <link rel="stylesheet" href="PlugIn/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="PlugIn/bootstrap/css/bootstrap-grid.css">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="PlugIn/bootstrap/css/bootstrap-reboot.css">
     <link rel="stylesheet" href="PlugIn/bootstrap/css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="PlugIn/bootstrap/css/bootstrap.min.css">
+
     <!-- 插件 -->
 
 
@@ -113,6 +115,9 @@
 
 <script>
     var selectedMode = 0;
+    $(function() {
+        $("[data-toggle='tooltip']").tooltip();
+    });
 
 
     // 点选模式
@@ -122,7 +127,12 @@
         $('#Source').val("");
         $('#Key').val("");
         $('#Cipher').val("");
+        $('#Key').tooltip('dispose');
+        $("[data-toggle='tooltip']").tooltip({
+            title: "要求全英文字符串"
+        });
         selectedMode = 0;
+
     });
 
     $('#Mono').click(function() {
@@ -131,6 +141,10 @@
         $('#Source').val("");
         $('#Key').val("");
         $('#Cipher').val("");
+        $('#Key').tooltip('dispose');
+        $("[data-toggle='tooltip']").tooltip({
+            title: "要求全英文字符串，不要出现重复字符"
+        });
         selectedMode = 1;
     });
 
@@ -140,15 +154,23 @@
         $('#Source').val("");
         $('#Key').val("");
         $('#Cipher').val("");
+        $('#Key').tooltip('dispose');
+        $("[data-toggle='tooltip']").tooltip({
+            title: "要求大于1的整数"
+        });
         selectedMode = 2;
     });
 
     $('#TransferredKey').click(function() {
-        $('#Key').attr('placeholder', "要求全英文字符串，不要出现重复字符 ");
-        $('#Key').attr('title', "要求全英文字符串，不要出现重复字符 ");
+        $('#Key').attr('placeholder', "要求全英文字符串，不要出现重复字符");
+        $('#Key').attr('title', "要求全英文字符串，不要出现重复字符");
         $('#Source').val("");
         $('#Key').val("");
         $('#Cipher').val("");
+        $('#Key').tooltip('dispose');
+        $("[data-toggle='tooltip']").tooltip({
+            title: "要求全英文字符串，不要出现重复字符"
+        });
         selectedMode = 3;
     });
 
