@@ -144,27 +144,48 @@
     });
 
     $('#TransferredKey').click(function() {
-        $('#Key').attr('placeholder', "要求全英文字符串，最好不要出现重复字符 ");
-        $('#Key').attr('title', "要求全英文字符串，最好不要出现重复字符 ");
+        $('#Key').attr('placeholder', "要求全英文字符串，不要出现重复字符 ");
+        $('#Key').attr('title', "要求全英文字符串，不要出现重复字符 ");
         $('#Source').val("");
         $('#Key').val("");
         $('#Cipher').val("");
         selectedMode = 3;
     });
 
+    function IsRepeat(str) {
+        return (/(.)(?=.*\1)/g).test(str) ? true : false;
+    }
+
     $('#Encode').click(function() {
         switch (selectedMode) {
             case 0:
-                $('#Cipher').val(VigenereEncode($('#Source').val(), $('#Key').val()));
+                if ((/[A-Za-z]+/.test($('#Key').val()))) {
+                    $('#Cipher').val(VigenereEncode($('#Source').val(), $('#Key').val()));
+                } else {
+                    alert("密钥不符合规范！")
+                }
                 break;
             case 1:
-                $('#Cipher').val(MonoEncode($('#Source').val(), $('#Key').val()));
+                if ((/[A-Za-z]+/.test($('#Key').val())) && !IsRepeat($('#Key').val())) {
+                    $('#Cipher').val(MonoEncode($('#Source').val(), $('#Key').val()));
+                } else {
+                    alert("密钥不符合规范！")
+                }
                 break;
             case 2:
-                $('#Cipher').val(TransferredCountEncode($('#Source').val(), $('#Key').val()));
+                if ((/[0-7]+/.test($('#Key').val())) && (parseInt($('#Key').val())) > 1) {
+                    $('#Cipher').val(TransferredCountEncode($('#Source').val(), $('#Key').val()));
+
+                } else {
+                    alert("密钥不符合规范！")
+                }
                 break;
             case 3:
-                $('#Cipher').val(TransferredKeyEncode($('#Source').val(), $('#Key').val()));
+                if ((/[A-Za-z]+/.test($('#Key').val())) && !IsRepeat($('#Key').val())) {
+                    $('#Cipher').val(TransferredKeyEncode($('#Source').val(), $('#Key').val()));
+                } else {
+                    alert("密钥不符合规范！")
+                }
                 break;
 
             default:
