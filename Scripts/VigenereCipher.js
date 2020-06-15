@@ -15,14 +15,14 @@ function VigenereEncode(source, key) {
         } else {
             var curValue = value.charCodeAt();
             var curKeyValue = keyString[index % keyString.length].charCodeAt();
-            result.push(GetEncodeTrgetChar(curValue, curKeyValue));
+            result.push(GetEncodeTargetChar(curValue, curKeyValue));
         }
     })
     return result.join("");
 }
 
 // 输入两个字符序列号，输出加密目标字符
-function GetEncodeTrgetChar(source, key) {
+function GetEncodeTargetChar(source, key) {
     indicator = source >= 'a'.charCodeAt() ? 'a'.charCodeAt() : 'A'.charCodeAt();
     key = source >= 'a'.charCodeAt() ? key + 32 : key;
     return String.fromCharCode(indicator + (source + key - 2 * indicator) % 26);
@@ -45,14 +45,14 @@ function VigenereDecode(source, key) {
         } else {
             var curValue = value.charCodeAt();
             var curKeyValue = keyString[index % keyString.length].charCodeAt();
-            result.push(GetDecodeTrgetChar(curValue, curKeyValue));
+            result.push(GetDecodeTargetChar(curValue, curKeyValue));
         }
     })
     return result.join("");
 }
 
 // 输入两个字符序列号，输出解密目标字符
-function GetDecodeTrgetChar(source, key) {
+function GetDecodeTargetChar(source, key) {
     indicator = source >= 'a'.charCodeAt() ? 'a'.charCodeAt() : 'A'.charCodeAt();
     key = source >= 'a'.charCodeAt() ? key + 32 : key;
     partition = source < key ? 1 : 0;
