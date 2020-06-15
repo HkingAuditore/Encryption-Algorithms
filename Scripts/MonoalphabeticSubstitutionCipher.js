@@ -1,7 +1,7 @@
 /*************单表置换密码************/
 
 // 生成密码本
-function generateKeyArray(key) {
+function GenerateKeyArray(key) {
     var keyArray = new String(key).split("");
     for (let i = 'A'.charCodeAt(); i <= 'Z'.charCodeAt(); i++) {
         if (jQuery.inArray(String.fromCharCode(i), keyArray) == -1) {
@@ -28,7 +28,7 @@ function MonoEncode(source, key) {
     var sourceArray = sourceString.split("");
 
     // 生成密码本
-    var keyArray = generateKeyArray(key);
+    var keyArray = GenerateKeyArray(key);
 
     // 遍历字符
     sourceArray.forEach((value, index, array) => {
@@ -52,7 +52,7 @@ function MonoDecode(source, key) {
     var sourceArray = sourceString.split("");
 
     // 生成密码本
-    var keyArray = generateKeyArray(key);
+    var keyArray = GenerateKeyArray(key);
 
     // 遍历字符
     sourceArray.forEach((value, index, array) => {
