@@ -6,7 +6,7 @@
 
 // 转换加密
 function TransferredCountEncode(source, keyCount) {
-    var sourceString = new String(source);
+    var sourceString = new String(source).replace(/\s/g, "");
 
     // 构建数组
     matrixRow = parseInt(sourceString.length / keyCount) + (sourceString.length % keyCount == 0 ? 0 : 1);

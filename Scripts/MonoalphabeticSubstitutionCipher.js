@@ -2,17 +2,19 @@
 
 // 生成密码本
 function GenerateKeyArray(key) {
-    var keyArray = new String(key).split("");
+    var key = new String(key).toUpperCase().split("");
+    var keyArray = new Array();
+    for (let i = 0; i < key.length; i++) {
+        if (jQuery.inArray(key[i], keyArray) == -1) {
+            keyArray.push(key[i]);
+        }
+    }
     for (let i = 'A'.charCodeAt(); i <= 'Z'.charCodeAt(); i++) {
         if (jQuery.inArray(String.fromCharCode(i), keyArray) == -1) {
             keyArray.push(String.fromCharCode(i));
         }
     }
-    for (let i = 'a'.charCodeAt(); i <= 'z'.charCodeAt(); i++) {
-        if (jQuery.inArray(String.fromCharCode(i), keyArray) == -1) {
-            keyArray.push(String.fromCharCode(i));
-        }
-    }
+
     return keyArray;
 }
 
@@ -25,7 +27,7 @@ function MonoEncode(source, key) {
 
     // 字符串转数组
     var result = new Array();
-    var sourceArray = sourceString.split("");
+    var sourceArray = sourceString.toUpperCase().split("");
 
     // 生成密码本
     var keyArray = GenerateKeyArray(key);
@@ -49,7 +51,7 @@ function MonoDecode(source, key) {
 
     // 字符串转数组
     var result = new Array();
-    var sourceArray = sourceString.split("");
+    var sourceArray = sourceString.toUpperCase().split("");
 
     // 生成密码本
     var keyArray = GenerateKeyArray(key);

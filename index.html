@@ -143,7 +143,7 @@
 
     $("#Mono").click(function() {
         $("#Key").attr("placeholder", "要求全英文字符串，不要出现重复字符");
-        $("#Key").attr("title", "要求全英文字符串，不要出现重复字符");
+        $("#Key").attr("title", "要求全英文字符串，最好不要出现重复字符");
         $("#Source").val("");
         $("#Key").val("");
         $("#Cipher").val("");
@@ -194,7 +194,7 @@
                 }
                 break;
             case 1:
-                if (/^[A-Za-z]+$/.test($("#Key").val()) && !IsRepeat($("#Key").val())) {
+                if (/^[A-Za-z]+$/.test($("#Key").val())) {
                     $("#Cipher").val(MonoEncode($("#Source").val(), $("#Key").val()));
                 } else {
                     alert("密钥不符合规范！");
